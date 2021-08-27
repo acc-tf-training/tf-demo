@@ -1,0 +1,5 @@
+terraform init
+terraform plan -out lab3.tfplan
+terraform apply "lab3.tfplan"
+
+terraform destroy

@@ -1,5 +1,5 @@
 terraform init
 terraform validate
-terraform plan -out myout.tfplan
-terraform apply "myout.tfplan"
+terraform plan -out lab1.tfplan
+terraform apply "lab1.tfplan"
 terraform destroy
