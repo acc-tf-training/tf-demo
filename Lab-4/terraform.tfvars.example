@@ -17,7 +17,7 @@ bucket_name_prefix = "indiaapp"
 environment_tag = "dev"
 
 # Made up billing code to be added as a tag to resources. You can leave this value as-is.
-billing_code_tag = "ACC"
+billing_code_tag = "ACCLS009"
 
 # You will need to create a service principal
 # Check the README for instructions
