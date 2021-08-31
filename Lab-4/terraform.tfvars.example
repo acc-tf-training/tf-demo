@@ -8,17 +8,16 @@ aws_secret_key = ""
 key_name = "name_of_existing_key_pair"
 
 # Local path to pem file for key pair. 
-# Windows paths need to use double-backslash: Ex. C:\\Users\\Ned\\Pluralsight.pem
 private_key_path = "private_key_path\private_key_file.pem" 
 
 # Prefix value to be used for S3 bucket. You can leave this value as-is
-bucket_name_prefix = "globo"
+bucket_name_prefix = "indiaapp"
 
 # Environment tag for all resources being created. You can leave this value as-is.
 environment_tag = "dev"
 
 # Made up billing code to be added as a tag to resources. You can leave this value as-is.
-billing_code_tag = "ACCT8675309"
+billing_code_tag = "ACCLS009"
 
 # You will need to create a service principal
 # Check the README for instructions
