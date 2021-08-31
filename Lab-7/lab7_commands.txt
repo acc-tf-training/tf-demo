@@ -1,0 +1,39 @@
+# Configure an AWS profile with proper credentials
+aws configure --profile tftest
+
+# Linux or MacOS
+export AWS_PROFILE=tftest
+
+# Windows
+$env:AWS_PROFILE="tftest"
+
+# Deploy the current environment
+terraform init
+terraform validate
+terraform plan -out lab7.tfplan
+terraform apply "lab7.tfplan"
+
+# Now Jimmy ruins things
+
+# Linux and MacOS: Run the awscli_admin.sh script
+./awscli_admin.sh
+
+# Windows: Install the AWS PowerShell module
+Install-Module AWSPowerShell.NetCore -Scope CurrentUser
+
+# Windows: Run the PowerShellAdminIssue.ps1 script
+.\PowerShellAdminIssue.ps1
+
+# Update your terraform.tfvars file to comment out the current 
+# private_subnets, public_subnets, and subnet_count values and
+# uncomment the updated values
+
+# Run the import commands in ImportCommands.txt
+
+terraform plan -out lab7.tfplan
+
+# There should be 3 changes where tags are added
+
+terraform apply "lab7.tfplan"
+
+terraform destroy
