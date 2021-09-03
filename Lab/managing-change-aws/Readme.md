@@ -1,6 +1,7 @@
 Set Up the Environment
-1) Copy your ami and your subnet_id from your resource_ids.tx file, and update the main configuration file. 
-2) Initialize the working directory. 3) Apply the Terraform configuration.
+1) Copy your ami from your resource_ids.tx file and your subnet_id from your cloud env, and update the main configuration file. 
+2) Initialize the working directory. 
+3) Apply the Terraform configuration.
 
 
 Deploy Configuration Changes
