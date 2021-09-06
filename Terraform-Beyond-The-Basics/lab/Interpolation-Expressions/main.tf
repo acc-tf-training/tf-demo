@@ -48,7 +48,7 @@ resource "aws_instance" "test" {
 		Name = "My Test ${local.name}"
     
     ### conditional expression
-		foo  = local.name == "aaa" ? "yes" : "no"
+		foo  = local.name == "server" ? "yes" : "no"
     
     ###HEREDOC
 		bar  = <<EOT
@@ -60,10 +60,12 @@ resource "aws_instance" "test" {
     data_var = "Hello, ${local.name}!"
     ###Directives
     data_if = "Hello, %{ if local.name != "" }${local.name}%{ else }unnamed%{ endif }!"
+    /*
     data_loop = <<EOT
                 %{ for ip in aws_instance.web.*.private_ip }
                 server ${ip}
                 %{ endfor }
                 EOT
+    */
 	}
 }
