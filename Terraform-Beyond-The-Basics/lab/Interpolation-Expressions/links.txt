@@ -1,0 +1,2 @@
+https://www.terraform.io/docs/language/expressions/types.html
+https://www.terraform.io/docs/language/expressions/strings.html
