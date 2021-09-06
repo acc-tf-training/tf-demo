@@ -93,7 +93,6 @@ output "instance" {
 
 # LifeCycle Example 
 #####################
-/*
 resource "aws_instance" "web" {
 	provider      = aws.east
 	ami           = "ami-085925f297f89fce1"
@@ -104,9 +103,8 @@ resource "aws_instance" "web" {
 	}
 
 	lifecycle {
-		create_before_destroy = true
-		prevent_destroy       = true
+    create_before_destroy = true
+    prevent_destroy       = true
 		ignore_changes        = [tags]
 	}
 }
-*/
