@@ -102,16 +102,6 @@ resource "aws_instance" "web" {
 	tags = {
 		Name = "My Instance in the east"
 	}
-}
-*/
-resource "aws_instance" "web" {
-	provider      = aws.east
-	ami           = "ami-085925f297f89fce1"
-	instance_type = "t2.micro"
-
-	tags = {
-		Name = "My Instance in the east"
-	}
 
 	lifecycle {
 		create_before_destroy = true
@@ -119,3 +109,4 @@ resource "aws_instance" "web" {
 		ignore_changes        = [tags]
 	}
 }
+*/
