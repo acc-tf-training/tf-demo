@@ -1,5 +1,6 @@
-#abs Function
+###abs Function
 #abs returns the absolute value of the given number. In other words, if the number is zero or positive then it is returned as-is, but if it is negative then it is multiplied by -1 to make it positive before returning it.
+
 > abs(23)
 23
 > abs(0)
@@ -7,22 +8,26 @@
 > abs(-12.4)
 12.4
 
-#ceil Function
+
+###ceil Function
 #ceil returns the closest whole number that is greater than or equal to the given value, which may be a fraction.
+
 > ceil(5)
 5
 > ceil(5.1)
 6
 
-#floor Function
+###floor Function
 #floor returns the closest whole number that is less than or equal to the given value, which may be a fraction.
+
 > floor(5)
 5
 > floor(4.9)
 4
 
-#log Function
+###log Function
 #log returns the logarithm of a given number in a given base
+
 log(number, base)
 Example
 > log(50, 10)
@@ -30,16 +35,18 @@ Example
 > log(16, 2)
 4
 
-#max Function
+###max Function
 #max takes one or more numbers and returns the greatest number from the set.
+
 > max(12, 54, 3)
 54
 #If the numbers are in a list or set value, use ... to expand the collection to individual arguments
 > max([12, 54, 3]...)
 54
 
-#min Function
+######min Function
 #min takes one or more numbers and returns the smallest number from the set.
+
 > min(12, 54, 3)
 3
 #If the numbers are in a list or set value, use ... to expand the collection to individual arguments
