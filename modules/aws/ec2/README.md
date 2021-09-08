@@ -8,11 +8,11 @@ Terraform module which creates an EC2 instance on AWS.
 
 ```hcl
 module "ec2_instance" {
-  source  = "modules/aws/ec2"
+  source  = "../../../../../modules/aws/ec2"
 
   name = "single-instance"
 
-  ami                    = "ami-ebd02392"
+  ami                    = "ami-01f20c53ed8da4679"
   instance_type          = "t2.micro"
   key_name               = "user1"
   monitoring             = true
