@@ -1,3 +1,12 @@
+terraform {
+  required_providers {
+    aws = {
+      version = ">= 2.7.0"
+      source = "hashicorp/aws"
+    }
+}
+required_version = "~> 1.0.4"
+}
 #Provider Example
 #####################
 
@@ -13,7 +22,7 @@ provider "aws" {
 variable "image_id" {
   type = string
   description = "The id of the machine image (AMI) to use for the server"
-  default = "ami-01f20c53ed8da4679"
+  #default = "ami-01f20c53ed8da4679"
   validation {
    condition     = length(var.image_id) > 4 && substr(var.image_id, 0, 4) == "ami-"
    #condition     = can(regex("^ami-", var.image_id))
