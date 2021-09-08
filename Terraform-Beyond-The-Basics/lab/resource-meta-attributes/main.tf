@@ -10,12 +10,21 @@ provider "aws" {
 	region = "us-east-1"
 }
 
+variable "image_id" {
+  type = string
+  description = "The id of the machine image (AMI) to use for the server"
+  default = "ami-01f20c53ed8da4679"
+  validation {
+   condition     = length(var.image_id) > 4 && substr(var.image_id, 0, 4) == "ami-"
+   #condition     = can(regex("^ami-", var.image_id))
+   error_message = "The image_id value must be a valid ami id , starting with ami- ?"
+   }
+ }
 #Depends Example
 ################
-/*
 resource "aws_instance" "web-east" {
   provider      =  aws.east
-  ami           = "ami-01f20c53ed8da4679"
+  ami           = var.image_id
   instance_type = "t2.micro"
 
   tags = {
@@ -32,7 +41,6 @@ resource "aws_instance" "web-west" {
   }
   depends_on = [aws_instance.web-east]
 }
-*/
 
 
 #Count Example
