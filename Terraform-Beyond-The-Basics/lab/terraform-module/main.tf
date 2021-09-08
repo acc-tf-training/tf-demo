@@ -5,6 +5,7 @@ provider "aws" {
 module "vpc" {
   source = "./modules/vpc"
   region = var.region
+  vpc_cidr_block = var.vpc_cidr_block
 }
 
 resource "aws_instance" "my-instance" {
