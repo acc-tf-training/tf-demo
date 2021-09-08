@@ -1,6 +1,5 @@
 ###abs Function
 #abs returns the absolute value of the given number. In other words, if the number is zero or positive then it is returned as-is, but if it is negative then it is multiplied by -1 to make it positive before returning it.
-
 > abs(23)
 23
 > abs(0)
@@ -11,7 +10,6 @@
 
 ###ceil Function
 #ceil returns the closest whole number that is greater than or equal to the given value, which may be a fraction.
-
 > ceil(5)
 5
 > ceil(5.1)
@@ -19,7 +17,6 @@
 
 ###floor Function
 #floor returns the closest whole number that is less than or equal to the given value, which may be a fraction.
-
 > floor(5)
 5
 > floor(4.9)
@@ -27,7 +24,6 @@
 
 ###log Function
 #log returns the logarithm of a given number in a given base
-
 log(number, base)
 Example
 > log(50, 10)
@@ -37,56 +33,47 @@ Example
 
 ###max Function
 #max takes one or more numbers and returns the greatest number from the set.
-
 > max(12, 54, 3)
 54
 #If the numbers are in a list or set value, use ... to expand the collection to individual arguments
 > max([12, 54, 3]...)
 54
 
-######min Function
+###min Function
 #min takes one or more numbers and returns the smallest number from the set.
-
 > min(12, 54, 3)
 3
 #If the numbers are in a list or set value, use ... to expand the collection to individual arguments
 > min([12, 54, 3]...)
 3
 
-#parseint Function
+###parseint Function
 #parseint parses the given string as a representation of an integer in the specified base and returns the resulting number. The base must be between 2 and 62 inclusive.
 #All bases use the arabic numerals 0 through 9 first. Bases between 11 and 36 inclusive use case-insensitive latin letters to represent higher unit values. Bases 37 and higher use lowercase latin letters and then uppercase latin letters.
 #If the given string contains any non-digit characters or digit characters that are too large for the given base then parseint will produce an error
 Examples
 > parseint("100", 10)
 100
-
 > parseint("FF", 16)
 255
-
 > parseint("-10", 16)
 -16
-
 > parseint("1011111011101111", 2)
 48879
-
 > parseint("aA", 62)
 656
-
 > parseint("12", 2)
-
 Error: Invalid function argument
-
 Invalid value for "number" parameter: cannot parse "12" as a base 2 integer.
 
-#pow Function
+###pow Function
 #pow calculates an exponent, by raising its first argument to the power of the second argument.
 > pow(3, 2)
 9
 > pow(4, 0)
 1
 
-#signum Function
+###signum Function
 #signum determines the sign of a number, returning a number between -1 and 1 to represent the sign.
 > signum(-13)
 -1
