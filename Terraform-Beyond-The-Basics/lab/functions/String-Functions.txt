@@ -1,1 +1,194 @@
+###chomp Function
+#chomp removes newline characters at the end of a string.
+> chomp("hello\n")
+hello
+> chomp("hello\r\n")
+hello
+> chomp("hello\n\n")
+hello
 
+###format Function
+#format produces a string by formatting a number of other values according to a specification string.
+format(spec, values...)
+Examples
+> format("Hello, %s!", "Vishnu")
+Hello, Vishnu!
+> format("There are %d lights", 4)
+There are 4 lights
+#Simple format verbs like %s and %d behave similarly to template interpolation syntax, which is often more readable:
+> format("Hello, %s!", var.name)
+Hello, Akhil!
+> "Hello, ${var.name}!"
+Hello, Akhil!
+
+###formatlist Function
+#formatlist produces a list of strings by formatting a number of other values according to a specification string.
+formatlist(spec, values...)
+Examples
+> formatlist("Hello, %s!", ["Vishnu", "Akhil", "Ram", "Rohan"])
+[
+  "Hello, Vishnu!",
+  "Hello, Akhil!",
+  "Hello, Ram!",
+  "Hello, Rohan!",
+]
+> formatlist("%s, %s!", "Salutations", ["Vishnu", "Akhil", "Ram", "Rohan"])
+[
+  "Salutations, Vishnu!",
+  "Salutations, Akhil!",
+  "Salutations, Ram!",
+  "Salutations, Rohan!",
+]
+
+###indent Function
+#indent adds a given number of spaces to the beginnings of all but the first line in a given multi-line string.
+indent(num_spaces, string)
+Examples
+> "  items: ${indent(2, "[\n  foo,\n  bar,\n]\n")}"
+  items: [
+    foo,
+    bar,
+  ]
+  
+###join Function
+#join produces a string by concatenating together all elements of a given list of strings with the given delimiter.
+join(separator, list)
+Examples
+> join(", ", ["foo", "bar", "baz"])
+foo, bar, baz
+> join(", ", ["foo"])
+foo
+
+###lower Function
+#lower converts all cased letters in the given string to lowercase.
+> lower("HELLO")
+hello
+> lower("АЛЛО!")
+алло
+
+###regex Function
+#regex applies a regular expression to a string and returns the matching substrings.
+regex(pattern, string)
+Examples
+> regex("[a-z]+", "53453453.345345aaabbbccc23454")
+aaabbbccc
+
+> regex("(\\d\\d\\d\\d)-(\\d\\d)-(\\d\\d)", "2019-02-01")
+[
+  "2019",
+  "02",
+  "01",
+]
+
+> regex("^(?:(?P<scheme>[^:/?#]+):)?(?://(?P<authority>[^/?#]*))?", "https://terraform.io/docs/")
+{
+  "authority" = "terraform.io"
+  "scheme" = "https"
+}
+
+> regex("[a-z]+", "53453453.34534523454")
+
+Error: Error in function call
+
+Call to function "regex" failed: pattern did not match any part of the given
+string.
+
+###regexall Function
+#regexall applies a regular expression to a string and returns a list of all matches.
+regexall(pattern, string)
+Examples
+> regexall("[a-z]+", "1234abcd5678efgh9")
+[
+  "abcd",
+  "efgh",
+]
+
+> length(regexall("[a-z]+", "1234abcd5678efgh9"))
+2
+
+> length(regexall("[a-z]+", "123456789")) > 0
+false
+
+###replace Function
+#replace searches a given string for another given substring, and replaces each occurrence with a given replacement string.
+replace(string, substring, replacement)
+Examples
+> replace("1 + 2 + 3", "+", "-")
+1 - 2 - 3
+> replace("hello world", "/w.*d/", "everybody")
+hello everybody
+
+###split Function
+#split produces a list by dividing a given string at all occurrences of a given separator.
+split(separator, string)
+Examples
+> split(",", "foo,bar,baz")
+[
+  "foo",
+  "bar",
+  "baz",
+]
+> split(",", "foo")
+[
+  "foo",
+]
+> split(",", "")
+[
+  "",
+]
+
+###strrev Function
+#strrev reverses the characters in a string. Note that the characters are treated as Unicode characters
+strrev(string)
+Examples
+> strrev("hello")
+olleh
+> strrev("a ☃")
+☃ a
+
+###substr Function
+#substr extracts a substring from a given string by offset and length.
+substr(string, offset, length)
+Examples
+> substr("hello world", 1, 4)
+ello
+#The offset and length are both counted in unicode characters rather than bytes:
+> substr("🤔🤷", 0, 1)
+🤔
+#The offset index may be negative, in which case it is relative to the end of the given string. The length may be -1, in which case the remainder of the string after the given offset will be returned.
+> substr("hello world", -5, -1)
+world
+
+###title Function
+#title converts the first letter of each word in the given string to uppercase.
+> title("hello world")
+Hello World
+
+###trim Function
+#trim removes the specified characters from the start and end of the given string.
+> trim("?!hello?!", "!?")
+hello
+
+###trimprefix Function
+#trimprefix removes the specified prefix from the start of the given string. If the string does not start with the prefix, the string is returned unchanged.
+> trimprefix("helloworld", "hello")
+world
+> trimprefix("helloworld", "cat")
+helloworld
+
+###trimsuffix Function
+#trimsuffix removes the specified suffix from the end of the given string.
+> trimsuffix("helloworld", "world")
+hello
+
+###trimspace Function
+#trimspace removes any space characters from the start and end of the given string.
+> trimspace("  hello\n\n")
+hello
+
+###upper Function
+#upper converts all cased letters in the given string to uppercase
+> upper("hello")
+HELLO
+> upper("алло!")
+АЛЛО!
