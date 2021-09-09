@@ -335,15 +335,15 @@ variable "nsg_name" {
 #       Azure CLI                                      #
 ########################################################
 
-variable "azcli_service_principal" {
-  description = "Azure Service principal for Azure CLI"
-  type        = string
-}
+#variable "azcli_service_principal" {
+#  description = "Azure Service principal for Azure CLI"
+#  type        = string
+#}
 
-variable "azcli_service_principal_key" {
-  description = "Azure Service principal Key for Azure CLI"
-  type        = string
-}
+#variable "azcli_service_principal_key" {
+#  description = "Azure Service principal Key for Azure CLI"
+#  type        = string
+#}
 
 
 ###################################################################

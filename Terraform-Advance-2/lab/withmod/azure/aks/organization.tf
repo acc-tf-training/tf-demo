@@ -3,7 +3,7 @@
 #########################################################################
 
 module "local_sub" {
-  source     = "../../modules//azure/data_sub"
+  source     = "github.com/acc-tf-training/tf-modules/azure/data_sub"
 }
 
 
@@ -18,7 +18,7 @@ module "local_sub" {
 
 
 module "ctag" {
-  source      = "../../modules//azure/ctag"
+  source      = "github.com/acc-tf-training/tf-modules/azure/ctag"
   owner       = var.owner
   cost_center = var.cost_center
   application = var.application
@@ -31,7 +31,7 @@ module "ctag" {
 #########################################################################
 
 module "rsg" {
-  source     = "../../modules//azure/rsg"
+  source     = "github.com/acc-tf-training/tf-modules/azure/rsg"
   name       = "${var.bu_name}${var.cloud_code}${var.project_name}${var.csc_rsg}${var.environment}10"
   location   = var.pri_location
   tags       = module.ctag.tags
