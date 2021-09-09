@@ -6,7 +6,7 @@
 
 
 module "vnt" {
-  source              = "../../modules//azure/vnt"
+  source              = "github.com/acc-tf-training/tf-modules/azure/vnt"
   name                = "${var.bu_name}${var.cloud_code}${var.project_name}${var.csc_vnt}${var.environment}10"
   resource_group_name = module.rsg.name
   location            = module.rsg.location

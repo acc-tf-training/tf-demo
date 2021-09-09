@@ -3,7 +3,7 @@
 ##############################################################################
 
 module "acr" {
-  source              = "../../modules//azure/acr"
+  source              = "github.com/acc-tf-training/tf-modules/azure/acr"
   name                = "${var.bu_name}${var.cloud_code}${var.project_name}${var.csc_acr}${var.environment}01"
   location            = module.rsg.location
   resource_group_name = module.rsg.name

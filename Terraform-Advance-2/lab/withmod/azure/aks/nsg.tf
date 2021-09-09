@@ -7,7 +7,7 @@
 #Create NSG Rule
 
 module "nsg00" {
-  source                = "../../modules//azure/nsg"
+  source                = "github.com/acc-tf-training/tf-modules/azure/nsg"
   resource_group_name   = module.rsg.name
   location              = module.rsg.location
   security_group_name   =  var.nsg_name[0]
@@ -36,7 +36,7 @@ module "nsg00" {
 }
 
 module "nsg01" {
-  source                = "../../modules//azure/nsg"
+  source                = "github.com/acc-tf-training/tf-modules/azure/nsg"
   resource_group_name   = module.rsg.name
   location              = module.rsg.location
   security_group_name   =  var.nsg_name[1]

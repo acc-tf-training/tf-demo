@@ -15,7 +15,7 @@
   
 
 module "aks" {
-  source                        = "../../modules//azure/aks"
+  source                        = "github.com/acc-tf-training/tf-modules/azure/aks"
   name                          = "${var.bu_name}${var.cloud_code}${var.project_name}${var.csc_aks}${var.environment}10"
   kubernetes_version            =  var.aks_k8s_version
   resource_group_name           =  module.rsg.name
@@ -72,7 +72,7 @@ os_type                    = {
 
 
 module "aks_ns" {
-     source                 = "../../modules//kubernetes/namespace"
+     source                 = "github.com/acc-tf-training/tf-modules/kubernetes/namespace"
      host                   = module.aks.host
      client_certificate     = module.aks.client_certificate
      client_key             = module.aks.client_key
