@@ -1,0 +1,9 @@
+environment                      = "dev"
+bu_name                          = "it"
+cloud_code                       = "az"
+project_name                     = "da"
+pri_location                     = "eastus"
+vnt_address_space                =  ["172.19.146.0/23"]
+vnt_snt_address_spaces           =  ["172.19.146.0/24","172.19.147.0/24"]
+subnet_names                     = ["AppSubnet01","AppSubnet02"]
+nsg_name                         = ["AppSubnet01-NSG","AppSubnet02-NSG"]

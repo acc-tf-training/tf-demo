@@ -6,7 +6,7 @@
 
 
 module "vnt" {
-  source              = "../../modules//azure/vnt"
+  source              = "github.com/acc-tf-training/tf-modules/azure/vnt"
   name                = "${var.bu_name}${var.cloud_code}${var.project_name}${var.csc_vnt}${var.environment}01"
   resource_group_name = module.rsg.name
   location            = module.rsg.location
@@ -22,5 +22,4 @@ module "vnt" {
     "${var.subnet_names[0]}" = module.nsg00.id
     "${var.subnet_names[1]}" = module.nsg01.id
   }
-  tags = module.ctag.tags
 }
