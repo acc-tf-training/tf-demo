@@ -1,0 +1,88 @@
+###base64sha256 Function
+#base64sha256 computes the SHA256 hash of a given string and encodes it with Base64. This is not equivalent to base64encode(sha256("test")) since sha256() returns hexadecimal representation.
+> base64sha256("hello world")
+uU0nuZNNPgilLlLX2n2r+sSE7+N6U4DukIj3rOLvzek=
+
+###base64sha512 Function
+#base64sha512 computes the SHA512 hash of a given string and encodes it with Base64. This is not equivalent to base64encode(sha512("test")) since sha512() returns hexadecimal representation.
+> base64sha512("hello world")
+MJ7MSJwS1utMxA9QyQLytNDtd+5RGnx6m808qG1M2G+YndNbxf9JlnDaNCVbRbDP2DDoH2Bdz33FVC6TrpzXbw==
+
+###bcrypt Function
+#bcrypt computes a hash of the given string using the Blowfish cipher, returning a string in the Modular Crypt Format usually expected in the shadow password file on many Unix systems.
+bcrypt(string, cost)
+Examples
+> bcrypt("hello world")
+$2a$10$D5grTTzcsqyvAeIAnY/mYOIqliCoG7eAMX0/oFcuD.iErkksEbcAa
+
+###filebase64sha256 Function
+#filebase64sha256 is a variant of base64sha256 that hashes the contents of a given file rather than a literal string.
+
+###filebase64sha512 Function
+#filebase64sha512 is a variant of base64sha512 that hashes the contents of a given file rather than a literal string.
+
+###filemd5 Function
+#filemd5 is a variant of md5 that hashes the contents of a given file rather than a literal string.
+
+###filesha1 Function
+#filesha1 is a variant of sha1 that hashes the contents of a given file rather than a literal string.
+
+###filesha256 Function
+#filesha256 is a variant of sha256 that hashes the contents of a given file rather than a literal string.
+
+###filesha512 Function
+#filesha512 is a variant of sha512 that hashes the contents of a given file rather than a literal string.
+
+###md5 Function
+#md5 computes the MD5 hash of a given string and encodes it with hexadecimal digits.
+> md5("hello world")
+5eb63bbbe01eeed093cb22bb8f5acdc3
+
+###rsadecrypt Function
+#rsadecrypt decrypts an RSA-encrypted ciphertext, returning the corresponding cleartext.
+rsadecrypt(ciphertext, privatekey)
+Examples
+> rsadecrypt(filebase64("${path.module}/ciphertext"), file("privatekey.pem"))
+Hello, world!
+
+###sha1 Function
+#sha1 computes the SHA1 hash of a given string and encodes it with hexadecimal digits.
+> sha1("hello world")
+2aae6c35c94fcfb415dbe95f408b9ce91ee846ed
+
+###sha256 Function
+#sha256 computes the SHA256 hash of a given string and encodes it with hexadecimal digits.
+> sha256("hello world")
+b94d27b9934d3e08a52e52d7da7dabfac484efe37a5380ee9088f7ace2efcde9
+
+###sha512 Function
+#sha512 computes the SHA512 hash of a given string and encodes it with hexadecimal digits.
+> sha512("hello world")
+309ecc489c12d6eb4cc40f50c902f2b4d0ed77ee511a7c7a9bcd3ca86d4cd86f989dd35bc5ff499670da34255b45b0cfd830e81f605dcf7dc5542e93ae9cd76f
+
+###uuid Function
+#uuid generates a unique identifier string.
+> uuid()
+b5ee72a3-54dd-c4b8-551c-4bdc0204cedb
+
+###uuidv5 Function
+#uuidv5 generates a name-based UUID, as described in RFC 4122 section 4.3, also known as a "version 5" UUID.
+uuidv5(namespace, name)
+#Use the namespace keywords where possible, to make the intent more obvious to a future reader
+> uuidv5("dns", "www.terraform.io")
+a5008fae-b28c-5ba5-96cd-82b4c53552d6
+
+> uuidv5("url", "https://www.terraform.io/")
+9db6f67c-dd95-5ea0-aa5b-e70e5c5f7cf5
+
+> uuidv5("oid", "1.3.6.1.4")
+af9d40a5-7a36-5c07-b23a-851cd99fbfa5
+
+> uuidv5("x500", "CN=Example,C=GB")
+84e09961-4aa4-57f8-95b7-03edb1073253
+#The namespace keywords treated as equivalent to their corresponding namespace UUIDs, and in some special cases it may be more appropriate to use the UUID form
+> uuidv5("6ba7b810-9dad-11d1-80b4-00c04fd430c8", "www.terraform.io")
+a5008fae-b28c-5ba5-96cd-82b4c53552d6
+#If you wish to use a namespace defined outside of RFC 4122, using the namespace UUID is required because no corresponding keyword is available
+> uuidv5("743ac3c0-3bf7-4a5b-9e6c-59360447c757", "LIBS:diskfont.library")
+ede1a974-df7e-5f17-84b9-76208818b2c8
