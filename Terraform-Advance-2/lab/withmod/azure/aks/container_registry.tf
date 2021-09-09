@@ -15,5 +15,4 @@ module "acr" {
   #content_trust           = true
   #allow_ip_ranges    = ["117.217.237.144/32"]
   #allowed_subnet_ids = [module.vnt.subnets.0]
-  depends_on          = [module.azcli]
 }
