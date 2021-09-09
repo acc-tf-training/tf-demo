@@ -1,0 +1,104 @@
+###abspath Function
+#abspath takes a string containing a filesystem path and converts it to an absolute path. That is, if the path is not absolute, it will be joined with the current working directory.
+> abspath(path.root)
+/home/user/some/terraform/root
+
+###dirname Function
+#dirname takes a string containing a filesystem path and removes the last portion from it
+> dirname("foo/bar/baz.txt")
+foo/bar
+
+###pathexpand Function
+#pathexpand takes a filesystem path that might begin with a ~ segment, and if so it replaces that segment with the current user's home directory path.
+> pathexpand("~/.ssh/id_rsa")
+/home/steve/.ssh/id_rsa
+> pathexpand("/etc/resolv.conf")
+/etc/resolv.conf
+
+###basename Function
+#basename takes a string containing a filesystem path and removes all except the last portion from it.
+> basename("foo/bar/baz.txt")
+baz.txt
+
+###file Function
+#file reads the contents of a file at the given path and returns them as a string
+file(path)
+Examples
+> file("${path.module}/hello.txt")
+Hello World
+
+###fileexists Function
+#fileexists determines whether a file exists at a given path.
+fileexists(path)
+Examples
+> fileexists("${path.module}/hello.txt")
+true
+
+###fileset Function
+#fileset enumerates a set of regular file names given a path and pattern. The path is automatically removed from the resulting set of file names and any result still containing path separators always returns forward slash (/) as the path separator for cross-system compatibility.
+fileset(path, pattern)
+Examples
+> fileset(path.module, "files/*.txt")
+[
+  "files/hello.txt",
+  "files/world.txt",
+]
+
+> fileset(path.module, "files/{hello,world}.txt")
+[
+  "files/hello.txt",
+  "files/world.txt",
+]
+
+> fileset("${path.module}/files", "*")
+[
+  "hello.txt",
+  "world.txt",
+]
+
+> fileset("${path.module}/files", "**")
+[
+  "hello.txt",
+  "world.txt",
+  "subdirectory/anotherfile.txt",
+]
+
+###filebase64 Function
+#filebase64 reads the contents of a file at the given path and returns them as a base64-encoded string.
+filebase64(path)
+Examples
+> filebase64("${path.module}/hello.txt")
+SGVsbG8gV29ybGQ=
+
+###templatefile Function
+#templatefile reads the file at the given path and renders its content as a template using a supplied set of template variables.
+templatefile(path, vars)
+Examples
+Lists
+#Given a template file backends.tpl with the following content:
+%{ for addr in ip_addrs ~}
+backend ${addr}:${port}
+%{ endfor ~}
+#The templatefile function renders the template:
+> templatefile("${path.module}/backends.tpl", { port = 8080, ip_addrs = ["10.0.0.1", "10.0.0.2"] })
+backend 10.0.0.1:8080
+backend 10.0.0.2:8080
+Maps
+#Given a template file config.tmpl with the following content:
+%{ for config_key, config_value in config }
+set ${config_key} = ${config_value}
+%{ endfor ~}
+#The templatefile function renders the template:
+> templatefile(
+               "${path.module}/config.tmpl",
+               {
+                 config = {
+                   "x"   = "y"
+                   "foo" = "bar"
+                   "key" = "value"
+                 }
+               }
+              )
+set foo = bar
+set key = value
+set x = y
