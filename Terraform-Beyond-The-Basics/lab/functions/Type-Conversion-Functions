@@ -1,0 +1,137 @@
+###can Function
+#can evaluates the given expression and returns a boolean value indicating whether the expression produced a result without any errors.
+> local.foo
+{
+  "bar" = "baz"
+}
+> can(local.foo.bar)
+true
+> can(local.foo.boop)
+false
+#The can function will not catch errors relating to constructs that are provably invalid even before dynamic expression evaluation, such as a malformed reference or a reference to a top-level object that has not been declared:
+> can(local.nonexist)
+
+Error: Reference to undeclared local value
+
+A local value with the name "nonexist" has not been declared.
+
+###defaults Function
+#The defaults function is a specialized function intended for use with input variables whose type constraints are object types or collections of object types that include optional attributes.
+defaults(input_value, defaults)
+
+###nonsensitive Function
+#nonsensitive takes a sensitive value and returns a copy of that value with the sensitive marking removed, thereby exposing the sensitive value.
+#If you use nonsensitive with content that ought to be considered sensitive then that content will be disclosed:
+> nonsensitive(var.mixed_content_json)
+<<EOT
+{
+  "username": "zqb",
+  "password": "p4ssw0rd"
+}
+EOT
+> nonsensitive(local.mixed_content)
+{
+  "password" = "p4ssw0rd"
+  "username" = "zqb"
+}
+> nonsensitive(local.mixed_content["password"])
+"p4ssw0rd"
+
+###sensitive Function
+#sensitive takes any value and returns a copy of it marked so that Terraform will treat it as sensitive, with the same meaning and behavior as for sensitive input variables.
+locals {
+  sensitive_content = sensitive(file("${path.module}/sensitive.txt"))
+}
+Examples
+> sensitive(1)
+(sensitive)
+> sensitive("hello")
+(sensitive)
+> sensitive([])
+(sensitive)
+
+###tobool Function
+#tobool converts its argument to a boolean value.
+> tobool(true)
+true
+> tobool("true")
+true
+> tobool("no")
+Error: Invalid function argument
+
+Invalid value for "v" parameter: cannot convert "no" to bool: only the strings
+"true" or "false" are allowed.
+
+> tobool(1)
+Error: Invalid function argument
+
+Invalid value for "v" parameter: cannot convert number to bool.
+
+###tolist Function
+#tolist converts its argument to a list value.
+> tolist(["a", "b", "c"])
+[
+  "a",
+  "b",
+  "c",
+]
+
+###tomap Function
+#tomap converts its argument to a map value
+> tomap({"a" = 1, "b" = 2})
+{
+  "a" = 1
+  "b" = 2
+}
+
+###tonumber Function
+#tonumber converts its argument to a number value.
+> tonumber(1)
+1
+> tonumber("1")
+1
+> tonumber("no")
+Error: Invalid function argument
+
+Invalid value for "v" parameter: cannot convert "no" to number: string must be
+a decimal representation of a number.
+
+###toset Function
+#toset converts its argument to a set value.
+> toset(["a", "b", "c"])
+[
+  "a",
+  "b",
+  "c",
+]
+
+###tostring Function
+#tostring converts its argument to a string value.
+> tostring("hello")
+hello
+> tostring(1)
+1
+> tostring(true)
+true
+> tostring([])
+Error: Invalid function argument
+
+Invalid value for "v" parameter: cannot convert tuple to string.
+
+###try Function
+#try evaluates all of its argument expressions in turn and returns the result of the first one that does not produce any errors.
+> local.foo
+{
+  "bar" = "baz"
+}
+> try(local.foo.bar, "fallback")
+baz
+> try(local.foo.boop, "fallback")
+fallback
+#The try function will not catch errors relating to constructs that are probably invalid even before dynamic expression evaluation, such as a malformed reference or a reference to a top-level object that has not been declared
+> try(local.nonexist, "fallback")
+
+Error: Reference to undeclared local value
+
+A local value with the name "nonexist" has not been declared.
+
