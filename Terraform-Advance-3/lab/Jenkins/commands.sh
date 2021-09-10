@@ -25,16 +25,13 @@ docker exec -it jenkins cat /var/jenkins_home/secrets/initialAdminPassword
 # Select poll SCM
 # Definition: Pipeline script from SCM
 # SCM: Git
-# Repo URL: YOUR_REPO_URL or https://github.com/acc-tf-training/tf-demo.git
-# Script path: Terraform-Advance-3/lab/Jenkins/networking/Jenkinsfile
+# Repo URL: YOUR_REPO_URL or https://github.com/acc-tf-training/tf-jenkins.git
+# Script path: networking/Jenkinsfile
 # Uncheck lightweight checkout
 
 # Go to credentials -> global
 # Create a credential of type secret text with ID aws_access_key and the access key as the secret
 # Create a credential of type secret text with ID aws_secret_access_key and the access secret as the secret
-
-#Run the PowerShell script to get the plugin files
-.\getTerraformPlugin.ps1
 
 #Now we can run a build of the network pipeline
 # First build might fail, but now the parameters will be Available
@@ -49,8 +46,8 @@ docker exec -it jenkins cat /var/jenkins_home/secrets/initialAdminPassword
 # Select poll SCM
 # Definition: Pipeline script from SCM
 # SCM: Git
-# Repo URL: YOUR_REPO_URL or https://github.com/acc-tf-training/tf-demo.git
-# Script path: Terraform-Advance-3/lab/Jenkins/applications/Jenkinsfile
+# Repo URL: YOUR_REPO_URL or https://github.com/acc-tf-training/tf-jenkins.git
+# Script path: applications/Jenkinsfile
 # Uncheck lightweight checkout
 
 # First build might fail, but now the parameters will be Available
