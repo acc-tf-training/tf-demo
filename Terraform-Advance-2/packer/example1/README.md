@@ -1,7 +1,7 @@
-#Introduction
+# Introduction
 Packer allows us to create templates for generating cross-platform machine images, and HashiCorp provides its own configuration language for this task. 
 
-#Solution
+# Solution
 Log in to the  machine
 
 Create a directory called packer
@@ -16,7 +16,7 @@ Update the variables to use the access key, secret key, subnet ID, and security 
 
 Save and exit the file
 
-#Run the build:
+# Run the build:
 
 packer build .
 It will take several minutes for the image to generate.
