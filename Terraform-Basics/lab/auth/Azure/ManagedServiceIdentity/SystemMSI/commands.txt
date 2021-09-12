@@ -1,5 +1,9 @@
 az group create --name demo-rg --location "east us"
 az vm create --resource-group demo-rg --name myVM --image UbuntuLTS --generate-ssh-keys --assign-identity --admin-username azureuser --admin-password Accpassword12
+#There will be output from above command and you will find the object ID
+az ad sp show --id "OBJECT_ID" --query appId -o tsv
+#You will get the appId then excute the below command 
+az role assignment create --role "Owner" --assignee "APP_ID"
 az vm show -d -g demo-rg -n myVM --query publicIps -o tsv
 
 

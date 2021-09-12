@@ -18,7 +18,7 @@ resource "azurerm_resource_group" "example" {
 }
 
 resource "azurerm_storage_account" "example" {
-  name                     = "FILL_THE_NAME_OF_THE_STORAGE_ACCOUNT"
+  name                     = "retsa200"
   resource_group_name      = azurerm_resource_group.example.name
   location                 = azurerm_resource_group.example.location
   account_tier             = "Standard"
