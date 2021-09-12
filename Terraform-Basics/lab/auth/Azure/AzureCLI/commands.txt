@@ -1,3 +1,5 @@
+
+#Login using Az CLI
 terraform init
 terraform plan 
 terraform apply 
