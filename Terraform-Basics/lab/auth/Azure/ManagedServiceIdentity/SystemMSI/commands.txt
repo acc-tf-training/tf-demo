@@ -7,6 +7,8 @@ az role assignment create --role "Owner" --assignee "APP_ID"
 az vm show -d -g demo-rg -n myVM --query publicIps -o tsv
 
 #Login to the server via ssh using above with publicip username and password
+#Install git, unzip , terraform, azure cli
+
 
 
 git clone git@github.com:acc-tf-training/tf-demo.git
