@@ -1,0 +1,11 @@
+az group create --name demo-rg --location "east us"
+az vm create --resource-group demo-rg --name myVM --image UbuntuLTS --generate-ssh-keys --assign-identity --admin-username azureuser --admin-password Accpassword12
+az vm show -d -g demo-rg -n myVM --query publicIps -o tsv
+
+
+
+terraform init
+terraform validate
+terraform plan 
+terraform apply 
+terraform destroy
