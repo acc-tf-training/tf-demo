@@ -1,0 +1,21 @@
+az group create --name demo-rg --location "east us"
+az identity create --name  myVM-app  --resource-group demo-rg
+az vm create --resource-group demo-rg --name myVM --image UbuntuLTS --generate-ssh-keys --admin-username azureuser --admin-password Accpassword12 --assign-identity /subscriptions/{SUBSCRIPTION_ID}/resourcegroups/demo-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myVM-app
+#You will get the appId then excute the below command 
+az role assignment create --role "Owner" --assignee "APP_ID"
+az vm show -d -g demo-rg -n myVM --query publicIps -o tsv
+
+#Login to the server via ssh using above with publicip username and password
+#Install git, unzip , terraform, azure cli
+
+
+https://github.com/acc-tf-training/tf-demo.git
+
+cd tf-demo/Terraform-Basics/lab/auth/Azure/ManagedServiceIdentity/UserMSI
+
+# Update the proper storage account name
+terraform init
+terraform validate
+terraform plan 
+terraform apply 
+terraform destroy
