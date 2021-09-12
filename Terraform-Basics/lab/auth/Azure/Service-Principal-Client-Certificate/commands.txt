@@ -1,0 +1,39 @@
+az account set --subscription="SUBSCRIPTION_ID"
+
+
+az ad sp create-for-rbac --create-cert -n "TerraformApp-Cert" --role owner --scopes /subscriptions/{SUBSCRIPTION_ID}
+
+#You will get an output like below 
+#{
+#  "appId": "58740225-e687-41b8-962e-b9d97bba3aaf",
+#  "displayName": "TerraformApp-Cert",
+#  "fileWithCertAndPrivateKey": "/home/rnair/tmpcule23wq.pem",
+#  "name": "58740225-e687-41b8-962e-b9d97bba3aaf",
+#  "password": null,
+#  "tenant": "5768582d-bafb-4c81-a4b4-8d79581b4d01"
+#}
+
+#enter the below command and put a password  as Apple@123
+
+openssl pkcs12 -inkey ~/tmpcule23wq.pem -in ~/tmpcule23wq.pem -export -out ~/terraformapp-cert.pfx
+
+# if you want to manage IAM via terraform then you should use "owner" or else  "Contributor"
+# These values map to the Terraform variables like so:
+# appId is the client_id defined above.
+# password is the client_secret defined above.
+# tenant is the tenant_id defined above.
+# export ARM_CLIENT_ID="00000000-0000-0000-0000-000000000000"
+# export ARM_CLIENT_CERTIFICATE_PATH="~/terraformapp-cert.pfx"
+# export ARM_CLIENT_CERTIFICATE_PASSWORD="Apple@123"
+# export ARM_SUBSCRIPTION_ID="00000000-0000-0000-0000-000000000000"
+# export ARM_TENANT_ID="00000000-0000-0000-0000-000000000000"
+# az vm list [ check the status of the az login ]
+
+
+
+
+terraform init
+terraform validate
+terraform plan 
+terraform apply 
+terraform destroy
