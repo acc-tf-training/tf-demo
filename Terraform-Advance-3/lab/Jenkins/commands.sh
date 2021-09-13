@@ -26,7 +26,7 @@ docker exec -it jenkins cat /var/jenkins_home/secrets/initialAdminPassword
 # Definition: Pipeline script from SCM
 # SCM: Git
 # Repo URL: YOUR_REPO_URL or https://github.com/acc-tf-training/tf-jenkins.git
-# Script path: networking/Jenkinsfile
+# Script path: env/Jenkinsfile
 # Uncheck lightweight checkout
 
 # Go to credentials -> global
@@ -37,20 +37,3 @@ docker exec -it jenkins cat /var/jenkins_home/secrets/initialAdminPassword
 # First build might fail, but now the parameters will be Available
 
 # Run a new build WITH parameters
-
-# When build is successful create a new pipeline for the application stack
-
-# Create a new item
-# Name: app-deploy
-# Type pipeline
-# Select poll SCM
-# Definition: Pipeline script from SCM
-# SCM: Git
-# Repo URL: YOUR_REPO_URL or https://github.com/acc-tf-training/tf-jenkins.git
-# Script path: applications/Jenkinsfile
-# Uncheck lightweight checkout
-
-# First build might fail, but now the parameters will be Available
-
-
-# Then run the build again
