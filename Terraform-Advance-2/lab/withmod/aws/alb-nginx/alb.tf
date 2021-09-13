@@ -1,12 +1,11 @@
 module "alb" {
   source  = "github.com/acc-tf-training/tf-modules/aws/alb"
-  version = "~> 6.0"
 
   name = "my-alb"
 
   load_balancer_type = "application"
 
-  vpc_id             = "vpc-abcde012"
+  vpc_id             =  module.vpc.vpc_id
   subnets            = [module.vpc.public_subnets.0, module.vpc.public_subnets.1]
   security_groups    = [module.vpc.default_security_group_id]
 
@@ -28,7 +27,7 @@ module "alb" {
       ]
     }
   ]
-
+/*
   https_listeners = [
     {
       port               = 443
@@ -37,7 +36,7 @@ module "alb" {
       target_group_index = 0
     }
   ]
-
+  */
   http_tcp_listeners = [
     {
       port               = 80
