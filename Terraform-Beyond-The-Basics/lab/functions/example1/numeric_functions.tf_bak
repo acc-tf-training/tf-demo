@@ -1,0 +1,22 @@
+locals {
+
+ first = max(5, 12, 9)
+ second = abs(-12.4)
+ thrid  =  ceil(5.1)
+
+}
+
+
+output "output_first" {
+  value = local.first
+
+} 
+
+
+output "output_second" {
+  value = local.second
+}
+
+output "output_thrid" {
+  value = local.thrid
+}

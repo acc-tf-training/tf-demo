@@ -1,0 +1,26 @@
+locals {
+ first = cidrhost("10.12.127.0/24", 16)
+ second = cidrnetmask("172.16.0.0/12")
+ thrid  =  cidrsubnet("172.16.0.0/12", 4, 2)
+ fourth = cidrsubnets("10.1.0.0/16", 4, 4, 8, 4)
+}
+
+
+output "output_first" {
+  value = local.first
+
+} 
+
+
+output "output_second" {
+  value = local.second
+}
+
+output "output_thrid" {
+  value = local.thrid
+}
+
+output "output_fourth" {
+  value = local.fourth
+}
+
