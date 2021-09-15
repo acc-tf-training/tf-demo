@@ -12,7 +12,7 @@ terraform {
 }
 
 variable "prefix" {
-  default = "rethesh"
+  default = "FILL_YOUR_NAME"
 }
 
 resource "azurerm_resource_group" "main" {
