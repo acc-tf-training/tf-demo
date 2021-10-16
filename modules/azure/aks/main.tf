@@ -3,10 +3,6 @@ module "ssh-key" {
   public_ssh_key = var.public_ssh_key == "" ? "" : var.public_ssh_key
 }
 
-#resource "azurerm_private_dns_zone" "example" {
-#  name                = "privatelink.eastus.azmk8s.io"
-#  resource_group_name = var.resource_group_name
-#}
 
 resource "azurerm_user_assigned_identity" "example" {
   name                = var.name
