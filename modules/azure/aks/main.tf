@@ -14,26 +14,13 @@ resource "azurerm_user_assigned_identity" "example" {
   location            = var.location
 }
 
-#resource "azurerm_role_assignment" "example" {
-#  scope                = "/subscriptions/5845bc89-e57d-40ea-aa4a-e67389cbfbec/resourceGroups/psazuseqrsghub10/providers/Microsoft.Network/privateDnsZones/privatelink.eastus.azmk8s.io"
-#  role_definition_name = "Private DNS Zone Contributor"
-#  principal_id         = azurerm_user_assigned_identity.example.principal_id
-#}
-
-#resource "azurerm_private_dns_zone_virtual_network_link" "example" {
-#  name                  = var.name
-#  resource_group_name   = var.resource_group_name
-#  private_dns_zone_name = azurerm_private_dns_zone.example.name
-#  virtual_network_id    = "/subscriptions/5845bc89-e57d-40ea-aa4a-e67389cbfbec/resourceGroups/psazuseqrsghub10/providers/Microsoft.Network/virtualNetworks/psazuseqvnthub10"
-#}
 
 resource "azurerm_kubernetes_cluster" "main" {
   name                = var.name
   location            = var.location
   resource_group_name = var.resource_group_name
   dns_prefix          = var.name
-  private_cluster_enabled = var.privatecluster
-  private_dns_zone_id     = var.privatecluster == false ? null : "/subscriptions/5845bc89-e57d-40ea-aa4a-e67389cbfbec/resourceGroups/psazuseqrsghub10/providers/Microsoft.Network/privateDnsZones/privatelink.eastus.azmk8s.io"
+  
 
   linux_profile {
     admin_username = var.admin_username
@@ -108,19 +95,8 @@ resource "azurerm_kubernetes_cluster" "main" {
   } 
 
 
-#  role_based_access_control {
-#      enabled = var.role_based_access_control_enabled
-#      azure_active_directory {
-#        managed = true
-#        admin_group_object_ids = ["a3873a70-8c4f-4436-92f3-6df62f69ed0b",]
-#      }
-#  }
-
   tags = var.tags
 
-#   depends_on = [
-#    azurerm_role_assignment.example,
-#  ]
 
   }
 
